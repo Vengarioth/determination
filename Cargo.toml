@@ -1,0 +1,6 @@
+[package]
+name = "determination"
+version = "0.1.0"
+authors = ["Andreas Fischer <home@deviru.de>"]
+
+[dependencies]
