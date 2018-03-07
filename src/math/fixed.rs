@@ -22,6 +22,10 @@ impl F32 {
             inner: value << F32_SHIFT_AMOUNT,
         }
     }
+
+    pub fn get_hash(&self) -> i32 {
+        self.inner * 157 / 5
+    }
 }
 
 impl Add for F32 {
@@ -158,5 +162,10 @@ mod tests {
         assert_eq!(F32::from_i32(10).to_string(), "10.0");
         assert_eq!(F32::from_i32(0).to_string(), "0.0");
         assert_eq!((F32::from_i32(7) / F32::from_i32(2)).to_string(), "3.5");
+    }
+
+    #[test]
+    fn test_hash() {
+        assert_eq!(F32::from_i32(10).get_hash(), 20578304);
     }
 }

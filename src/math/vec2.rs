@@ -19,8 +19,14 @@ impl Vec2 {
     pub fn magnitude_squared(&self) -> F32 {
         ((self.x * self.x) + (self.y * self.y))
     }
-}
 
+    pub fn get_hash(&self) -> i32 {
+        let mut hash = 0;
+        hash = hash * 37 + self.x.get_hash() / 5;
+        hash = hash * 131 + self.y.get_hash() / 5;
+        hash
+    }
+}
 
 impl Add for Vec2 {
     type Output = Self;
@@ -72,7 +78,6 @@ impl fmt::Display for Vec2 {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -81,5 +86,10 @@ mod tests {
     pub fn it_works() {
         let value = Vec2::new(F32::from_i32(15), F32::from_i32(11));
         assert_eq!(value.to_string(), "vec2(15.0, 11.0)");
+    }
+    
+    #[test]
+    fn test_hash() {
+        assert_eq!(Vec2::new(F32::from_i32(15), F32::from_i32(11)).get_hash(), 813254547);
     }
 }
